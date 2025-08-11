@@ -1,36 +1,36 @@
-"use client"
+"use client";
 
-import { useEffect, useRef, useState } from "react"
-import { ExternalLink, Github, Code } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { useEffect, useRef, useState } from "react";
+import { ExternalLink, Github, Code } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function Projects() {
-  const [isVisible, setIsVisible] = useState(false)
-  const sectionRef = useRef<HTMLElement>(null)
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsVisible(true)
+          setIsVisible(true);
         }
       },
-      { threshold: 0.1 },
-    )
+      { threshold: 0.1 }
+    );
 
     if (sectionRef.current) {
-      observer.observe(sectionRef.current)
+      observer.observe(sectionRef.current);
     }
 
-    return () => observer.disconnect()
-  }, [])
+    return () => observer.disconnect();
+  }, []);
 
   const projects = [
     {
       title: "E-Commerce Platform",
       description:
         "A full-stack e-commerce application built with MERN stack featuring user authentication, product management, shopping cart, and payment integration.",
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/images/e.png",
       technologies: ["React", "Node.js", "MongoDB", "Express", "Stripe"],
       github: "#",
       live: "#",
@@ -40,7 +40,7 @@ export default function Projects() {
       title: "Task Management App",
       description:
         "A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.",
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/images/task.png",
       technologies: ["React", "Socket.io", "Node.js", "MongoDB"],
       github: "#",
       live: "#",
@@ -86,17 +86,21 @@ export default function Projects() {
       live: "#",
       featured: false,
     },
-  ]
+  ];
 
-  const featuredProjects = projects.filter((project) => project.featured)
-  const otherProjects = projects.filter((project) => !project.featured)
+  const featuredProjects = projects.filter((project) => project.featured);
+  const otherProjects = projects.filter((project) => !project.featured);
 
   return (
     <section id="projects" ref={sectionRef} className="py-20">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
-          <div className={`text-center mb-16 ${isVisible ? "animate-fade-in-down" : "opacity-0"}`}>
+          <div
+            className={`text-center mb-16 ${
+              isVisible ? "animate-fade-in-down" : "opacity-0"
+            }`}
+          >
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
               <span className="text-emerald-400 font-mono">03.</span>{" "}
               <span className="text-white">Featured Projects</span>
@@ -115,7 +119,11 @@ export default function Projects() {
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 {/* Project Image */}
-                <div className={`relative group ${index % 2 === 1 ? "md:col-start-2" : ""}`}>
+                <div
+                  className={`relative group ${
+                    index % 2 === 1 ? "md:col-start-2" : ""
+                  }`}
+                >
                   <div className="relative overflow-hidden rounded-lg">
                     <img
                       src={project.image || "/placeholder.svg"}
@@ -127,14 +135,24 @@ export default function Projects() {
                 </div>
 
                 {/* Project Info */}
-                <div className={`space-y-4 ${index % 2 === 1 ? "md:col-start-1 md:row-start-1" : ""}`}>
+                <div
+                  className={`space-y-4 ${
+                    index % 2 === 1 ? "md:col-start-1 md:row-start-1" : ""
+                  }`}
+                >
                   <div>
-                    <p className="text-emerald-400 font-mono text-sm mb-2">Featured Project</p>
-                    <h3 className="text-2xl font-bold text-white mb-4">{project.title}</h3>
+                    <p className="text-emerald-400 font-mono text-sm mb-2">
+                      Featured Project
+                    </p>
+                    <h3 className="text-2xl font-bold text-white mb-4">
+                      {project.title}
+                    </h3>
                   </div>
 
                   <div className="code-block rounded-lg p-4">
-                    <p className="text-gray-300 leading-relaxed">{project.description}</p>
+                    <p className="text-gray-300 leading-relaxed">
+                      {project.description}
+                    </p>
                   </div>
 
                   <div className="flex flex-wrap gap-2">
@@ -157,7 +175,10 @@ export default function Projects() {
                       <Github className="w-4 h-4 mr-2" />
                       Code
                     </Button>
-                    <Button size="sm" className="bg-emerald-500 hover:bg-emerald-600 text-white">
+                    <Button
+                      size="sm"
+                      className="bg-emerald-500 hover:bg-emerald-600 text-white"
+                    >
                       <ExternalLink className="w-4 h-4 mr-2" />
                       Live Demo
                     </Button>
@@ -168,8 +189,13 @@ export default function Projects() {
           </div>
 
           {/* Other Projects */}
-          <div className={`${isVisible ? "animate-fade-in-up" : "opacity-0"}`} style={{ animationDelay: "0.6s" }}>
-            <h3 className="text-2xl font-bold text-white mb-8 text-center">Other Projects</h3>
+          <div
+            className={`${isVisible ? "animate-fade-in-up" : "opacity-0"}`}
+            style={{ animationDelay: "0.6s" }}
+          >
+            <h3 className="text-2xl font-bold text-white mb-8 text-center">
+              Other Projects
+            </h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {otherProjects.map((project, index) => (
                 <div
@@ -198,11 +224,16 @@ export default function Projects() {
                     {project.title}
                   </h4>
 
-                  <p className="text-gray-300 text-sm mb-4 leading-relaxed">{project.description}</p>
+                  <p className="text-gray-300 text-sm mb-4 leading-relaxed">
+                    {project.description}
+                  </p>
 
                   <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech) => (
-                      <span key={tech} className="px-2 py-1 text-xs font-mono text-gray-400">
+                      <span
+                        key={tech}
+                        className="px-2 py-1 text-xs font-mono text-gray-400"
+                      >
                         {tech}
                       </span>
                     ))}
@@ -214,5 +245,5 @@ export default function Projects() {
         </div>
       </div>
     </section>
-  )
+  );
 }
